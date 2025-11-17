@@ -1,0 +1,20 @@
+version: 2.1
+orbs:
+  slack: circleci/slack@4.4.4
+  ruby: circleci/ruby@2.1.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:3.3
+    steps:
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - ruby/install-deps
+
+workflows:
+  sample:
+    jobs:
+      - build
